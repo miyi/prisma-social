@@ -1,4 +1,4 @@
-import { Context, User, getUserId } from '../../utils'
+import { Context, User, getUserId} from '../../utils'
 
 export const me = async (_, args, ctx: Context, info) => {
     const id = getUserId(ctx)

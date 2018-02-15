@@ -5,8 +5,8 @@ import { notes } from './Mutation/notes'
 
 export const resolvers = {
 	Query: {
-		...me,
-		...note,
+		me,
+		note,
 	},
 	Mutation: {
 		...auth,
