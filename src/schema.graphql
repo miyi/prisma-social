@@ -9,7 +9,8 @@ type Mutation {
   createNote(text: String!): Note!
   updateNote(id: ID!, text: String!): Note
   deleteNote(id: ID!): Note
-  authenticate(githubCode: String!): AuthenticateUserPayload
+  gitAuthenticate(githubCode: String!): AuthenticateUserPayload
+  facebookAuthenticate(facebookToken: String!): AuthenticateUserPayload
 }
 
 type AuthenticateUserPayload {

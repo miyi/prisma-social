@@ -17,11 +17,17 @@ type Note implements Node {
 
 type User implements Node {
   id: ID!
-  githubUserId: String!
+  email: String
+  githubUserId: String
   name: String
   bio: String
-  public_repos: Int!
-  public_gists: Int!
+  public_repos: Int
+  public_gists: Int
+  facebookUserId: String
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
   notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note!]
 }
 
@@ -223,11 +229,17 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  githubUserId: String!
+  email: String
+  githubUserId: String
   name: String
   bio: String
   public_repos: Int
   public_gists: Int
+  facebookUserId: String
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
   notes: NoteCreateManyWithoutOwnerInput
 }
 
@@ -237,11 +249,17 @@ input UserCreateOneWithoutNotesInput {
 }
 
 input UserCreateWithoutNotesInput {
-  githubUserId: String!
+  email: String
+  githubUserId: String
   name: String
   bio: String
   public_repos: Int
   public_gists: Int
+  facebookUserId: String
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
 }
 
 type UserEdge {
@@ -252,6 +270,8 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  email_ASC
+  email_DESC
   githubUserId_ASC
   githubUserId_DESC
   name_ASC
@@ -262,6 +282,16 @@ enum UserOrderByInput {
   public_repos_DESC
   public_gists_ASC
   public_gists_DESC
+  facebookUserId_ASC
+  facebookUserId_DESC
+  first_name_ASC
+  first_name_DESC
+  last_name_ASC
+  last_name_DESC
+  gender_ASC
+  gender_DESC
+  picture_ASC
+  picture_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -270,11 +300,17 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  githubUserId: String!
+  email: String
+  githubUserId: String
   name: String
   bio: String
-  public_repos: Int!
-  public_gists: Int!
+  public_repos: Int
+  public_gists: Int
+  facebookUserId: String
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
 }
 
 type UserSubscriptionPayload {
@@ -295,11 +331,17 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
+  email: String
   githubUserId: String
   name: String
   bio: String
   public_repos: Int
   public_gists: Int
+  facebookUserId: String
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
   notes: NoteUpdateManyWithoutOwnerInput
 }
 
@@ -313,11 +355,17 @@ input UserUpdateOneWithoutNotesInput {
 }
 
 input UserUpdateWithoutNotesDataInput {
+  email: String
   githubUserId: String
   name: String
   bio: String
   public_repos: Int
   public_gists: Int
+  facebookUserId: String
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
 }
 
 input UserUpdateWithoutNotesInput {
@@ -348,6 +396,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
   githubUserId: String
   githubUserId_not: String
   githubUserId_in: [String!]
@@ -406,6 +468,76 @@ input UserWhereInput {
   public_gists_lte: Int
   public_gists_gt: Int
   public_gists_gte: Int
+  facebookUserId: String
+  facebookUserId_not: String
+  facebookUserId_in: [String!]
+  facebookUserId_not_in: [String!]
+  facebookUserId_lt: String
+  facebookUserId_lte: String
+  facebookUserId_gt: String
+  facebookUserId_gte: String
+  facebookUserId_contains: String
+  facebookUserId_not_contains: String
+  facebookUserId_starts_with: String
+  facebookUserId_not_starts_with: String
+  facebookUserId_ends_with: String
+  facebookUserId_not_ends_with: String
+  first_name: String
+  first_name_not: String
+  first_name_in: [String!]
+  first_name_not_in: [String!]
+  first_name_lt: String
+  first_name_lte: String
+  first_name_gt: String
+  first_name_gte: String
+  first_name_contains: String
+  first_name_not_contains: String
+  first_name_starts_with: String
+  first_name_not_starts_with: String
+  first_name_ends_with: String
+  first_name_not_ends_with: String
+  last_name: String
+  last_name_not: String
+  last_name_in: [String!]
+  last_name_not_in: [String!]
+  last_name_lt: String
+  last_name_lte: String
+  last_name_gt: String
+  last_name_gte: String
+  last_name_contains: String
+  last_name_not_contains: String
+  last_name_starts_with: String
+  last_name_not_starts_with: String
+  last_name_ends_with: String
+  last_name_not_ends_with: String
+  gender: String
+  gender_not: String
+  gender_in: [String!]
+  gender_not_in: [String!]
+  gender_lt: String
+  gender_lte: String
+  gender_gt: String
+  gender_gte: String
+  gender_contains: String
+  gender_not_contains: String
+  gender_starts_with: String
+  gender_not_starts_with: String
+  gender_ends_with: String
+  gender_not_ends_with: String
+  picture: String
+  picture_not: String
+  picture_in: [String!]
+  picture_not_in: [String!]
+  picture_lt: String
+  picture_lte: String
+  picture_gt: String
+  picture_gte: String
+  picture_contains: String
+  picture_not_contains: String
+  picture_starts_with: String
+  picture_not_starts_with: String
+  picture_ends_with: String
+  picture_not_ends_with: String
   notes_every: NoteWhereInput
   notes_some: NoteWhereInput
   notes_none: NoteWhereInput
@@ -413,13 +545,17 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
   githubUserId: String
+  facebookUserId: String
 }
 `
 
 export type UserOrderByInput = 
   'id_ASC' |
   'id_DESC' |
+  'email_ASC' |
+  'email_DESC' |
   'githubUserId_ASC' |
   'githubUserId_DESC' |
   'name_ASC' |
@@ -430,6 +566,16 @@ export type UserOrderByInput =
   'public_repos_DESC' |
   'public_gists_ASC' |
   'public_gists_DESC' |
+  'facebookUserId_ASC' |
+  'facebookUserId_DESC' |
+  'first_name_ASC' |
+  'first_name_DESC' |
+  'last_name_ASC' |
+  'last_name_DESC' |
+  'gender_ASC' |
+  'gender_DESC' |
+  'picture_ASC' |
+  'picture_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -471,6 +617,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input
   id_ends_with?: ID_Input
   id_not_ends_with?: ID_Input
+  email?: String
+  email_not?: String
+  email_in?: String[] | String
+  email_not_in?: String[] | String
+  email_lt?: String
+  email_lte?: String
+  email_gt?: String
+  email_gte?: String
+  email_contains?: String
+  email_not_contains?: String
+  email_starts_with?: String
+  email_not_starts_with?: String
+  email_ends_with?: String
+  email_not_ends_with?: String
   githubUserId?: String
   githubUserId_not?: String
   githubUserId_in?: String[] | String
@@ -529,17 +689,93 @@ export interface UserWhereInput {
   public_gists_lte?: Int
   public_gists_gt?: Int
   public_gists_gte?: Int
+  facebookUserId?: String
+  facebookUserId_not?: String
+  facebookUserId_in?: String[] | String
+  facebookUserId_not_in?: String[] | String
+  facebookUserId_lt?: String
+  facebookUserId_lte?: String
+  facebookUserId_gt?: String
+  facebookUserId_gte?: String
+  facebookUserId_contains?: String
+  facebookUserId_not_contains?: String
+  facebookUserId_starts_with?: String
+  facebookUserId_not_starts_with?: String
+  facebookUserId_ends_with?: String
+  facebookUserId_not_ends_with?: String
+  first_name?: String
+  first_name_not?: String
+  first_name_in?: String[] | String
+  first_name_not_in?: String[] | String
+  first_name_lt?: String
+  first_name_lte?: String
+  first_name_gt?: String
+  first_name_gte?: String
+  first_name_contains?: String
+  first_name_not_contains?: String
+  first_name_starts_with?: String
+  first_name_not_starts_with?: String
+  first_name_ends_with?: String
+  first_name_not_ends_with?: String
+  last_name?: String
+  last_name_not?: String
+  last_name_in?: String[] | String
+  last_name_not_in?: String[] | String
+  last_name_lt?: String
+  last_name_lte?: String
+  last_name_gt?: String
+  last_name_gte?: String
+  last_name_contains?: String
+  last_name_not_contains?: String
+  last_name_starts_with?: String
+  last_name_not_starts_with?: String
+  last_name_ends_with?: String
+  last_name_not_ends_with?: String
+  gender?: String
+  gender_not?: String
+  gender_in?: String[] | String
+  gender_not_in?: String[] | String
+  gender_lt?: String
+  gender_lte?: String
+  gender_gt?: String
+  gender_gte?: String
+  gender_contains?: String
+  gender_not_contains?: String
+  gender_starts_with?: String
+  gender_not_starts_with?: String
+  gender_ends_with?: String
+  gender_not_ends_with?: String
+  picture?: String
+  picture_not?: String
+  picture_in?: String[] | String
+  picture_not_in?: String[] | String
+  picture_lt?: String
+  picture_lte?: String
+  picture_gt?: String
+  picture_gte?: String
+  picture_contains?: String
+  picture_not_contains?: String
+  picture_starts_with?: String
+  picture_not_starts_with?: String
+  picture_ends_with?: String
+  picture_not_ends_with?: String
   notes_every?: NoteWhereInput
   notes_some?: NoteWhereInput
   notes_none?: NoteWhereInput
 }
 
 export interface UserCreateWithoutNotesInput {
-  githubUserId: String
+  email?: String
+  githubUserId?: String
   name?: String
   bio?: String
   public_repos?: Int
   public_gists?: Int
+  facebookUserId?: String
+  first_name?: String
+  last_name?: String
+  gender?: String
+  picture?: String
 }
 
 export interface NoteWhereInput {
@@ -597,11 +833,17 @@ export interface NoteUpsertWithoutOwnerInput {
 }
 
 export interface UserUpdateInput {
+  email?: String
   githubUserId?: String
   name?: String
   bio?: String
   public_repos?: Int
   public_gists?: Int
+  facebookUserId?: String
+  first_name?: String
+  last_name?: String
+  gender?: String
+  picture?: String
   notes?: NoteUpdateManyWithoutOwnerInput
 }
 
@@ -611,15 +853,23 @@ export interface NoteUpdateWithoutOwnerDataInput {
 
 export interface UserWhereUniqueInput {
   id?: ID_Input
+  email?: String
   githubUserId?: String
+  facebookUserId?: String
 }
 
 export interface UserCreateInput {
-  githubUserId: String
+  email?: String
+  githubUserId?: String
   name?: String
   bio?: String
   public_repos?: Int
   public_gists?: Int
+  facebookUserId?: String
+  first_name?: String
+  last_name?: String
+  gender?: String
+  picture?: String
   notes?: NoteCreateManyWithoutOwnerInput
 }
 
@@ -634,11 +884,17 @@ export interface UserSubscriptionWhereInput {
 }
 
 export interface UserUpdateWithoutNotesDataInput {
+  email?: String
   githubUserId?: String
   name?: String
   bio?: String
   public_repos?: Int
   public_gists?: Int
+  facebookUserId?: String
+  first_name?: String
+  last_name?: String
+  gender?: String
+  picture?: String
 }
 
 export interface UserCreateOneWithoutNotesInput {
@@ -713,11 +969,17 @@ export interface NotePreviousValues {
 
 export interface User extends Node {
   id: ID_Output
-  githubUserId: String
+  email?: String
+  githubUserId?: String
   name?: String
   bio?: String
-  public_repos: Int
-  public_gists: Int
+  public_repos?: Int
+  public_gists?: Int
+  facebookUserId?: String
+  first_name?: String
+  last_name?: String
+  gender?: String
+  picture?: String
   notes?: Note[]
 }
 
@@ -734,11 +996,17 @@ export interface BatchPayload {
 
 export interface UserPreviousValues {
   id: ID_Output
-  githubUserId: String
+  email?: String
+  githubUserId?: String
   name?: String
   bio?: String
-  public_repos: Int
-  public_gists: Int
+  public_repos?: Int
+  public_gists?: Int
+  facebookUserId?: String
+  first_name?: String
+  last_name?: String
+  gender?: String
+  picture?: String
 }
 
 export interface UserConnection {

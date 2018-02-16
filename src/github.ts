@@ -1,8 +1,9 @@
 import * as fetch from 'isomorphic-fetch'
 
-export interface githubUser {
+export interface GithubUser {
 	id: string,
   name: string,
+  email: string,
   bio: string,
   public_repos: number,
   public_gists: number

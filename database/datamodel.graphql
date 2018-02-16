@@ -1,12 +1,20 @@
 type User {
   id: ID! @unique
+  email: String @unique
 
   # GitHub data
-  githubUserId: String! @unique
+  githubUserId: String @unique
   name: String
+
   bio: String
-  public_repos: Int! @default(value: "0")
-  public_gists: Int! @default(value: "0")
+  public_repos: Int @default(value: "0")
+  public_gists: Int @default(value: "0")
+  
+  facebookUserId: String @unique
+  first_name: String
+  last_name: String
+  gender: String
+  picture: String
 
   # Application data
   notes: [Note!]!
